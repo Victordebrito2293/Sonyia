@@ -1,0 +1,19 @@
+[package]
+name = "sonyia-audio-engine"
+version = "1.0.0"
+edition = "2021"
+license = "GPL-3.0-or-later"
+description = "DSP local para Sonyia: reamostragem, análise espectral e detecção de atividade de voz."
+authors = ["Victor de Brito Brandão"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"

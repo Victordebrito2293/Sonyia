@@ -1,0 +1,102 @@
+name: Bug report
+description: Relate um comportamento incorreto no Sonyia
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reportar! **Não inclua mídia real, transcrições confidenciais, tokens ou segredos.** Vulnerabilidades de segurança devem ser reportadas privadamente conforme SECURITY.md.
+
+  - type: input
+    id: version
+    attributes:
+      label: Versão do Sonyia
+      description: "Ex.: 1.0.0 (visível no rodapé ou em package.json)"
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Sistema operacional
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Android
+        - iOS
+        - Outro
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Navegador e versão
+      placeholder: "Chrome 130.0.0.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o comportamento observado com clareza.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: O que era esperado?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      description: Inclua o tipo/conteúdo genérico do arquivo (sem anexar mídia confidencial), modelo escolhido e configurações.
+      placeholder: |
+        1. Abrir a aplicação
+        2. Selecionar arquivo ...
+        3. Configurar modelo ...
+        4. Clicar em Transcrever
+    validations:
+      required: true
+
+  - type: dropdown
+    id: model
+    attributes:
+      label: Modelo utilizado
+      options:
+        - tiny
+        - base
+        - small
+        - Não chegou a transcrever
+        - Não se aplica
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/erros do console
+      description: Cole mensagens de erro sem dados pessoais.
+      render: shell
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verificações
+      options:
+        - label: Testei em mais de um navegador, quando possível
+          required: false
+        - label: Verifiquei que o modelo já havia sido baixado (primeira execução pode exigir conexão)
+          required: false
+        - label: Não incluí mídia, transcrição ou segredos neste relato
+          required: true

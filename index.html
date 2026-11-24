@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' blob:; worker-src 'self' blob:; style-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self' data:; connect-src 'self' blob: https://huggingface.co https://*.huggingface.co https://cdn-lfs.huggingface.co https://cdn-lfs-us-1.huggingface.co https://cdn-lfs-eu-1.huggingface.co; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      name="description"
+      content="Sonyia — transcrição inteligente de áudio e vídeo, multilíngue e com processamento local, sem necessidade de API."
+    />
+    <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" />
+    <title>Sonyia — Transcrição local de áudio e vídeo</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="a11y.main">Conteúdo principal</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Sonyia">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <rect x="1" y="1" width="30" height="30" rx="9" fill="currentColor" opacity=".12" />
+              <path d="M7 16h2m3-5v10m4-14v18m4-13v8m3-5h2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span class="brand-name">Sonyia</span>
+        </a>
+
+        <nav class="header-nav" aria-label="Navegação">
+          <a href="#features" data-i18n="nav.features">Funcionalidades</a>
+          <a href="#privacy" data-i18n="nav.privacy">Privacidade</a>
+          <a href="#settings" data-i18n="nav.settings">Configurações</a>
+        </nav>
+
+        <div class="header-actions">
+          <label class="select-wrap compact" title="" data-i18n-title="header.language">
+            <span class="sr-only" data-i18n="header.language">Idioma da interface</span>
+            <select id="locale-select" data-i18n-aria="a11y.language" aria-label="Selecionar idioma da interface"></select>
+          </label>
+          <button id="theme-toggle" class="icon-button" type="button" data-i18n-aria="a11y.theme" aria-label="Alternar tema">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" />
+              <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="container hero-inner">
+          <span class="eyebrow"><span class="pulse-dot"></span><span data-i18n="hero.badge">100% local · Código aberto</span></span>
+          <h1 data-i18n="hero.title">Sua fala, transformada em texto. Sem sair do dispositivo.</h1>
+          <p class="hero-subtitle" data-i18n="hero.subtitle"></p>
+          <a class="button primary hero-cta" id="hero-pick" href="#uploader">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span data-i18n="hero.cta">Selecionar arquivo</span>
+          </a>
+        </div>
+      </section>
+
+      <div class="container workspace">
+        <div class="column left-column">
+          <section class="card upload-card" id="uploader" aria-labelledby="upload-title">
+            <div class="card-heading">
+              <div class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M9 18H6a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-3M9 18l3 3 3-3M12 15V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </div>
+              <div>
+                <h2 id="upload-title" data-i18n="upload.title">Importar mídia</h2>
+                <p data-i18n="upload.subtitle">Arraste um arquivo para cá ou escolha no seu computador.</p>
+              </div>
+            </div>
+
+            <div id="drop-zone" class="drop-zone" tabindex="0" role="button" data-i18n-aria="upload.accessibleLabel" aria-label="Selecionar arquivo de áudio ou vídeo">
+              <div class="drop-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </div>
+              <strong data-i18n="upload.drop">Solte o arquivo para analisar</strong>
+              <span data-i18n="upload.dropHint">Solte para começar</span>
+              <button id="pick-file" class="button secondary" type="button" data-i18n="upload.button">Selecionar arquivo</button>
+              <input id="file-input" type="file" accept=".mp4,.mov,.webm,.mkv,.avi,.mp3,.wav,.m4a,.aac,.flac,.ogg" hidden />
+            </div>
+
+            <div id="file-card" class="file-card" hidden>
+              <div class="file-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm10-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </div>
+              <div class="file-details">
+                <strong id="file-name"></strong>
+                <span id="file-meta"></span>
+              </div>
+              <button id="remove-file" class="icon-button subtle" type="button" title="" data-i18n-title="upload.remove" data-i18n-aria="upload.remove" aria-label="Remover">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+              </button>
+            </div>
+
+            <p class="hint" data-i18n="upload.hint">O arquivo permanece no seu dispositivo durante todo o processo.</p>
+            <p class="supported" data-i18n="upload.supported">Formatos testados</p>
+            <div class="format-list" aria-hidden="true">
+              <span>MP4</span><span>MOV</span><span>WEBM</span><span>MKV</span><span>AVI</span><span>MP3</span><span>WAV</span><span>M4A</span><span>AAC</span><span>FLAC</span><span>OGG</span>
+            </div>
+            <button id="start-button" class="button primary wide" type="button" disabled>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /></svg>
+              <span data-i18n="upload.start">Transcrever</span>
+            </button>
+            <p id="upload-error" class="error-message" role="alert" hidden></p>
+          </section>
+
+          <section class="card settings-card" id="settings" aria-labelledby="settings-title">
+            <div class="card-heading compact-heading">
+              <div class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h10m4 0h2M4 17h4m4 0h8M14 4v6M8 14v6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>
+              </div>
+              <h2 id="settings-title" data-i18n="settings.title">Configurações de transcrição</h2>
+            </div>
+
+            <div class="field">
+              <label for="model-select" data-i18n="settings.model">Modelo de reconhecimento</label>
+              <select id="model-select" data-i18n-aria="a11y.model" aria-label="Selecionar modelo de transcrição">
+                <option value="tiny" data-i18n="settings.model.tiny">Leve</option>
+                <option value="base" selected data-i18n="settings.model.base">Equilibrado</option>
+                <option value="small" data-i18n="settings.model.small">Alta precisão</option>
+              </select>
+              <p id="model-hint" class="field-hint"></p>
+              <p class="field-hint subtle-text"><span data-i18n="settings.model.size">Download estimado</span>: <span id="model-size"></span> · <span data-i18n="settings.model.ram">Memória estimada</span>: <span id="model-ram"></span></p>
+            </div>
+
+            <div class="field">
+              <label for="vad-select" data-i18n="settings.vad">Sensibilidade da detecção de fala</label>
+              <select id="vad-select" data-i18n-aria="a11y.vad" aria-label="Ajustar sensibilidade da detecção de fala">
+                <option value="0.25" data-i18n="settings.vad.conservative">Conservadora</option>
+                <option value="0.5" selected data-i18n="settings.vad.balanced">Equilibrada</option>
+                <option value="0.8" data-i18n="settings.vad.inclusive">Inclusiva</option>
+              </select>
+              <p class="field-hint" data-i18n="settings.vad.hint"></p>
+            </div>
+
+            <div class="field">
+              <label for="language-select" data-i18n="settings.language">Idioma falado</label>
+              <select id="language-select">
+                <option value="" selected data-i18n="settings.language.auto">Detectar automaticamente</option>
+                <option value="portuguese">Português / Portuguese</option>
+                <option value="english">English</option>
+                <option value="spanish">Español</option>
+                <option value="french">Français</option>
+                <option value="german">Deutsch</option>
+                <option value="italian">Italiano</option>
+                <option value="dutch">Nederlands</option>
+                <option value="japanese">日本語</option>
+                <option value="chinese">中文</option>
+              </select>
+              <p class="field-hint" data-i18n="settings.language.hint"></p>
+            </div>
+
+            <label class="checkbox-row">
+              <input id="timestamps-toggle" type="checkbox" checked />
+              <span data-i18n="settings.timestamps">Incluir marcas de tempo no texto</span>
+            </label>
+
+            <details class="privacy-details">
+              <summary data-i18n="models.origin">Origem dos modelos</summary>
+              <p data-i18n="models.downloadNotice"></p>
+              <p data-i18n="models.offline"></p>
+              <p><a href="https://huggingface.co/Xenova/whisper-base" rel="noopener noreferrer" target="_blank">Xenova/whisper-base</a> · Apache-2.0</p>
+            </details>
+          </section>
+        </div>
+
+        <div class="column right-column">
+          <section class="card progress-card" id="progress-panel" aria-labelledby="progress-title" hidden>
+            <div class="card-heading compact-heading">
+              <div class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </div>
+              <h2 id="progress-title" data-i18n="progress.title">Processando localmente</h2>
+            </div>
+            <div class="progress-summary">
+              <strong id="progress-file"></strong>
+              <div class="progress-bar" role="progressbar" id="progress-bar" data-i18n-aria="a11y.progress" aria-label="Progresso da transcrição" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
+              <div class="progress-meta">
+                <span id="progress-stage"></span>
+                <span id="progress-percent">0%</span>
+              </div>
+              <p id="progress-detail" class="field-hint"></p>
+              <p class="local-note"><span class="lock-icon" aria-hidden="true">◆</span><span data-i18n="progress.local"></span></p>
+            </div>
+            <div class="progress-footer">
+              <span><span data-i18n="progress.elapsed">Tempo decorrido</span>: <strong id="progress-elapsed">0:00</strong></span>
+              <button id="cancel-button" class="button ghost" type="button" data-i18n="progress.cancel">Cancelar</button>
+            </div>
+          </section>
+
+          <section class="card result-card" id="result-panel" aria-labelledby="result-title">
+            <div class="card-heading">
+              <div class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16l-7-4-7 4V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" /></svg>
+              </div>
+              <div>
+                <h2 id="result-title" data-i18n="result.title">Transcrição</h2>
+                <p data-i18n="result.subtitle"></p>
+              </div>
+            </div>
+
+            <div id="result-empty" class="result-empty">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 6h8M8 10h8M8 14h5m-9 6h16V4H4v16Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              <p data-i18n="result.empty">A transcrição aparecerá aqui quando o processamento terminar.</p>
+            </div>
+
+            <div id="result-content" hidden>
+              <dl class="result-meta">
+                <div><dt data-i18n="result.language">Idioma detectado</dt><dd id="meta-language">—</dd></div>
+                <div><dt data-i18n="result.duration">Duração processada</dt><dd id="meta-duration">—</dd></div>
+                <div><dt data-i18n="result.model">Modelo</dt><dd id="meta-model">—</dd></div>
+                <div><dt data-i18n="result.segments">Trechos de fala</dt><dd id="meta-segments">—</dd></div>
+              </dl>
+
+              <div class="view-switch" role="tablist" aria-label="Visualização">
+                <button id="view-continuous" class="view-button active" type="button" role="tab" aria-selected="true" data-i18n="result.view.continuous">Texto contínuo</button>
+                <button id="view-segments" class="view-button" type="button" role="tab" aria-selected="false" data-i18n="result.view.segments">Texto segmentado</button>
+              </div>
+
+              <textarea id="transcript-editor" spellcheck="false" data-i18n-aria="result.editorLabel" aria-label="Texto da transcrição" rows="14"></textarea>
+              <div id="segment-view" class="segment-view" hidden></div>
+
+              <div class="result-actions">
+                <button id="copy-button" class="button secondary" type="button" data-i18n="result.copy">Copiar tudo</button>
+                <button id="redo-button" class="button ghost" type="button" data-i18n="result.redo">Refazer</button>
+                <button id="clear-button" class="button ghost" type="button" data-i18n="result.clear">Limpar resultado</button>
+              </div>
+              <p class="hint" data-i18n="result.note"></p>
+              <p class="hint warning" data-i18n="result.limitations"></p>
+
+              <div class="export-block">
+                <h3 data-i18n="export.title">Exportar</h3>
+                <div id="export-buttons" class="export-buttons" data-i18n-aria="a11y.downloads" aria-label="Opções de download"></div>
+                <label class="checkbox-row compact-row">
+                  <input id="export-timestamps" type="checkbox" checked />
+                  <span data-i18n="export.includeTimestamps">Incluir marcas de tempo</span>
+                </label>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="features container" id="features">
+        <article><h3 data-i18n="feature.local.title"></h3><p data-i18n="feature.local.text"></p></article>
+        <article><h3 data-i18n="feature.multilingual.title"></h3><p data-i18n="feature.multilingual.text"></p></article>
+        <article><h3 data-i18n="feature.vad.title"></h3><p data-i18n="feature.vad.text"></p></article>
+        <article><h3 data-i18n="feature.export.title"></h3><p data-i18n="feature.export.text"></p></article>
+      </section>
+
+      <section class="privacy container" id="privacy">
+        <div>
+          <span class="eyebrow"><span class="pulse-dot"></span><span data-i18n="privacy.title"></span></span>
+          <h2 data-i18n="privacy.title">Privacidade local</h2>
+          <p data-i18n="privacy.text"></p>
+        </div>
+        <ul>
+          <li data-i18n="privacy.point1"></li>
+          <li data-i18n="privacy.point2"></li>
+          <li data-i18n="privacy.point3"></li>
+          <li data-i18n="privacy.point4"></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-brand">Sonyia</span>
+        <span data-i18n="credits.developer">Criado e desenvolvido por Victor de Brito Brandão.</span>
+        <span class="footer-note"><span data-i18n="footer.rights"></span> · <span id="footer-version" data-i18n="footer.version" data-vars='{"version":"1.0.0"}'></span></span>
+        <span class="footer-note" data-i18n="credits.opensource"></span>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>

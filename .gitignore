@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+target/
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# WASM / generated assets (rebuild with npm run build:wasm and npm run assets)
+src/wasm/audio_engine.js
+src/wasm/audio_engine.d.ts
+src/wasm/audio_engine_bg.wasm
+public/ffmpeg/
+public/ort/
+
+# Tests
+playwright-report/
+test-results/
+coverage/
+
+# Logs and OS files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Local environment
+.env
+.env.*
+!.env.example

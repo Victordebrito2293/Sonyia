@@ -1,0 +1,70 @@
+name: Feature request
+description: Proponha uma melhoria ou nova funcionalidade
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propostas são bem-vindas. Lembre-se: Sonyia não possui backend, telemetria, chaves de API nem upload de mídia. Diarização e tradução estão fora do escopo da versão 1.0.0 e exigem discussão específica.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema ou motivação
+      description: Qual dor esta mudança resolve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Solução proposta
+      description: Descreva o comportamento desejado e como ele se encaixa no fluxo local.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área afetada
+      options:
+        - Interface / acessibilidade
+        - Decodificação / formatos
+        - VAD / DSP
+        - Transcrição / modelos
+        - Exportação
+        - Documentação
+        - CI / testes
+        - Outra
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Impacto esperado
+      options:
+        - label: Pode exigir mais memória, CPU ou armazenamento
+          required: false
+        - label: Pode afetar privacidade ou segurança (exigirá revisão de docs/PRIVACY.md e docs/SECURITY.md)
+          required: false
+        - label: Pode adicionar ou alterar dependências e licenças (exigirá revisão de docs/MODELS.md)
+          required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verificações
+      options:
+        - label: Pesquisei issues existentes para evitar duplicidade
+          required: true
+        - label: Entendo que a proposta será avaliada quanto ao escopo local-first do projeto
+          required: true
