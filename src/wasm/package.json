@@ -1,0 +1,20 @@
+{
+  "name": "sonyia-audio-engine",
+  "type": "module",
+  "collaborators": [
+    "Victor de Brito Brandão"
+  ],
+  "description": "DSP local para Sonyia: reamostragem, análise espectral e detecção de atividade de voz.",
+  "version": "1.0.0",
+  "license": "GPL-3.0-or-later",
+  "files": [
+    "audio_engine_bg.wasm",
+    "audio_engine.js",
+    "audio_engine.d.ts"
+  ],
+  "main": "audio_engine.js",
+  "types": "audio_engine.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

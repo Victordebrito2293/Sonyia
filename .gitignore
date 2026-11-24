@@ -7,10 +7,9 @@ dist/
 build/
 *.tsbuildinfo
 
-# WASM / generated assets (rebuild with npm run build:wasm and npm run assets)
-src/wasm/audio_engine.js
-src/wasm/audio_engine.d.ts
-src/wasm/audio_engine_bg.wasm
+# Grandes artefatos copiados de node_modules por `npm run assets`.
+# O motor Rust/WASM em src/wasm é versionado para que Vercel/ Pages
+# consigam compilar sem instalar Rust durante o build.
 public/ffmpeg/
 public/ort/
 

@@ -20,6 +20,7 @@ Primeira versão do Sonyia: transcrição local de áudio e vídeo no navegador,
 - Documentação: READMEs em três idiomas, arquitetura, privacidade, segurança, modelos e contribuição.
 - CI com matriz Node 20.x/22.x/24.x, testes do crate Rust e testes end-to-end com Playwright.
 - Workflow de deploy contínuo para GitHub Pages (`deploy-pages.yml`).
+- Configuração `vercel.json` para deploy estático na Vercel sem instalar Rust no build.
 - Templates de issue (bug report e feature request) e de pull request.
 
 ### Changed

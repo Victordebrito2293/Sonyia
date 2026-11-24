@@ -124,6 +124,8 @@ En la primera transcripción, el modelo se descarga desde Hugging Face y se guar
 
 La compilación es estática. El workflow `.github/workflows/deploy-pages.yml` genera el motor WASM, compila el sitio y publica `dist/` en cada push a `main` (o cuando se dispara manualmente). Activa **Settings → Pages → Source: GitHub Actions** en el repositorio. Vite usa `base: './'`, por lo que el sitio funciona desde una subruta sin cambios de configuración. No se necesita servidor, base de datos ni variables de entorno. Las cabeceras y el comportamiento de WASM dependen de la plataforma de alojamiento: valida el resultado en el navegador y regístralo en el informe de validación.
 
+Para desplegar en **Vercel**, importa este repositorio con la configuración de `vercel.json`: `npm ci` para instalar, `npm run build` para compilar y `dist` como directorio de salida. El motor Rust/WASM generado está versionado, por lo que Vercel no necesita instalar Rust. Los archivos grandes de ffmpeg y ONNX Runtime se copian desde `node_modules` automáticamente mediante `prebuild`.
+
 ## 12. Privacidad
 
 Ningún archivo multimedia ni transcripción sale del dispositivo. El único tráfico externo es la descarga inicial del runtime y los modelos (además del propio sitio, cuando está alojado en la web). Las preferencias de tema e idioma son la única persistencia local de datos del usuario; los archivos y transcripciones viven en memoria y se descartan al cerrar la pestaña. Los artefactos descargados permanecen en la caché del navegador hasta que se borren manualmente. Consulta [docs/PRIVACY.md](docs/PRIVACY.md).
